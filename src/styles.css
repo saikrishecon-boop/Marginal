@@ -1,0 +1,179 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --font-sans:
+    "Inter Tight", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-ao1: var(--ao1);
+  --color-ao2: var(--ao2);
+  --color-ao3: var(--ao3);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+}
+
+/*
+ * Single dark "ink" theme: deep neutral canvas, one confident jade accent,
+ * and three fixed hues reserved for the AO1 / AO2 / AO3 assessment objectives
+ * so a mark breakdown always reads the same way across the product.
+ */
+:root {
+  --radius: 0.75rem;
+
+  --background: oklch(0.165 0.008 260);
+  --foreground: oklch(0.965 0.004 260);
+
+  --surface: oklch(0.196 0.009 262);
+  --surface-raised: oklch(0.232 0.01 262);
+
+  --card: oklch(0.196 0.009 262);
+  --card-foreground: oklch(0.965 0.004 260);
+  --popover: oklch(0.21 0.01 262);
+  --popover-foreground: oklch(0.965 0.004 260);
+
+  --primary: oklch(0.79 0.145 168);
+  --primary-foreground: oklch(0.18 0.03 168);
+
+  --secondary: oklch(0.262 0.011 262);
+  --secondary-foreground: oklch(0.95 0.004 260);
+
+  --muted: oklch(0.245 0.01 262);
+  --muted-foreground: oklch(0.685 0.014 260);
+
+  --accent: oklch(0.28 0.014 262);
+  --accent-foreground: oklch(0.965 0.004 260);
+
+  --destructive: oklch(0.63 0.2 22);
+  --destructive-foreground: oklch(0.98 0.005 20);
+
+  --success: oklch(0.75 0.15 158);
+  --warning: oklch(0.8 0.14 78);
+
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 13%);
+  --ring: oklch(0.79 0.145 168 / 55%);
+
+  /* Fixed assessment-objective hues — never reuse these for decoration. */
+  --ao1: oklch(0.74 0.13 232);
+  --ao2: oklch(0.79 0.145 168);
+  --ao3: oklch(0.82 0.14 88);
+
+  --chart-1: oklch(0.79 0.145 168);
+  --chart-2: oklch(0.74 0.13 232);
+  --chart-3: oklch(0.82 0.14 88);
+  --chart-4: oklch(0.7 0.13 320);
+  --chart-5: oklch(0.72 0.15 30);
+
+  --sidebar: oklch(0.183 0.008 262);
+  --sidebar-foreground: oklch(0.9 0.006 260);
+  --sidebar-primary: oklch(0.79 0.145 168);
+  --sidebar-primary-foreground: oklch(0.18 0.03 168);
+  --sidebar-accent: oklch(0.255 0.011 262);
+  --sidebar-accent-foreground: oklch(0.965 0.004 260);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.79 0.145 168 / 45%);
+
+  --shadow-panel: 0 1px 0 0 oklch(1 0 0 / 6%) inset, 0 18px 40px -24px oklch(0 0 0 / 80%);
+  --gradient-hero: radial-gradient(
+    120% 80% at 50% -10%,
+    oklch(0.79 0.145 168 / 18%) 0%,
+    transparent 62%
+  );
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
+}
+
+@utility hero-glow {
+  background-image: var(--gradient-hero);
+}
+
+@utility grid-fade {
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 4%) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 4%) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(80% 55% at 50% 0%, black 0%, transparent 75%);
+}
